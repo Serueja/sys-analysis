@@ -23,24 +23,14 @@ def task() -> list[float]:
 
     # Матрица с вероятностями комбинаций для заданных суммы и произведения
     probabilities = counts / 36
-
-    # ВЫЧИСЛЕНИЕ H(AB)
     entropy_ab = -np.sum(probabilities * np.log2(probabilities))
-
-    # ВЫЧИСЛЕНИЕ H(A)
     # Матрица вероятностей только для события A
     probabilities_a = np.sum(probabilities, axis=1)
     entropy_a = -np.sum(probabilities_a * np.log2(probabilities_a))
-
-    # ВЫЧИСЛЕНИЕ H(B)
     # Матрица вероятностей только для события B
     probabilities_b = np.sum(probabilities, axis=0)
     entropy_b = -np.sum(probabilities_b * np.log2(probabilities_b))
-
-    # ВЫЧИСЛЕНИЕ H_A(B)
     entropy_a_b = entropy_ab - entropy_a
-
-    # ВЫЧИСЛЕНИЕ I(A,B)
     information_ab = entropy_b - entropy_a_b
 
     return [round(el, 2) for el in [entropy_ab, entropy_a, entropy_b, entropy_a_b, information_ab]]
