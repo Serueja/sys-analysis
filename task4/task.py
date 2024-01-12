@@ -1,6 +1,5 @@
 import numpy as np
 
-
 def task() -> list[float]:
     # Находим все возможные суммы и произведения
     sums = set()
@@ -23,13 +22,16 @@ def task() -> list[float]:
 
     # Матрица с вероятностями комбинаций для заданных суммы и произведения
     probabilities = counts / 36
-    entropy_ab = -np.sum(probabilities * np.log2(probabilities))
+    print('probabilities -', probabilities)
+    
+    entropy_ab = -np.sum(probabilities * np.log2(probabilities, where=np.abs(probabilities) > 0.0001))
+    print('entropy_ab -', entropy_ab)
     # Матрица вероятностей только для события A
     probabilities_a = np.sum(probabilities, axis=1)
-    entropy_a = -np.sum(probabilities_a * np.log2(probabilities_a))
+    entropy_a = -np.sum(probabilities_a * np.log2(probabilities_a, where=np.abs(probabilities_a) > 0.0001))
     # Матрица вероятностей только для события B
     probabilities_b = np.sum(probabilities, axis=0)
-    entropy_b = -np.sum(probabilities_b * np.log2(probabilities_b))
+    entropy_b = -np.sum(probabilities_b * np.log2(probabilities_b, where=np.abs(probabilities_b) > 0.0001))
     entropy_a_b = entropy_ab - entropy_a
     information_ab = entropy_b - entropy_a_b
 
