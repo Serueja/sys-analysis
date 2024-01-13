@@ -102,17 +102,17 @@ def expected_result(expert_1, expert_2, kernel):
 
     print(result)
 
-def perform_task():
+def task():
     expert_A = [[1], [2, 3, 4], [5, 6, 7], 8, 9, 10]
     expert_B = [[1, 2, 3], [4, 5], 6, 7, 9, [8, 10]] 
-    expert_C = [1, 4, 3, 2,6,[5,7,8],[9,10]]
+    # expert_C = [1, 4, 3, 2,6,[5,7,8],[9,10]]
     matrix_A = create_matrix_from_e(expert_A)
     matrix_B = create_matrix_from_e(expert_B)
-    matrix_C = create_matrix_from_e(expert_C)
+    # matrix_C = create_matrix_from_e(expert_C)
     kernel_AB = calculate_nonequal_kernel(matrix_A, matrix_B)
-    kernel_BC = calculate_nonequal_kernel(matrix_B, matrix_C)
+    # kernel_BC = calculate_nonequal_kernel(matrix_B, matrix_C)
 
     expected_result(expert_A, expert_B, kernel_AB)
 
 if __name__ == '__main__':
-    perform_task()
+    task()
